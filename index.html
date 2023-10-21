@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>TODO APP</title>
+  </head>
+  <body>
+    <h1>My TODOs</h1>
+    <form action="#" id="formDetails">
+      <label for="name">Todo Name:</label>
+      <input type="text" id="name" required /><br />
+      <label for="description">Description:</label>
+      <input type="text" id="description" required />
+      <button type="submit">Add Todo</button>
+    </form>
+
+    <div id="remTodo"><h2>Remaining:</h2></div>
+    <div id="doneTodo"><h2>Completed:</h2></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.1/axios.min.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
