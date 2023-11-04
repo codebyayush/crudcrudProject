@@ -6,10 +6,9 @@ function addTodoOnScreen(todoinfo) {
   remTodoDiv.innerHTML = `
         <strong>Todo Name: </strong>${todoinfo.name}<br>
         <strong>Todo Description: </strong>${todoinfo.desc}<br>
-        <strong>Completed: </strong>${todoinfo.completed}<br><br>
-
-        <button onclick="tickR('${todoinfo.name}','${todoinfo.desc}','${todoinfo._id}', '${todoinfo.completed}' ,this)">DONE</button>
-        <button onclick="tickW('${todoinfo._id}',this)">REMOVE</button>
+        <strong>Completed: </strong>${todoinfo.completed}<br>
+        <button id="donebtn" onclick="tickR('${todoinfo.name}','${todoinfo.desc}','${todoinfo._id}', '${todoinfo.completed}' ,this)">DONE</button>
+        <button id="removebtn" onclick="tickW('${todoinfo._id}',this)">REMOVE</button><hr><br>
     `;
   todoList.appendChild(remTodoDiv);
 }
@@ -24,8 +23,7 @@ function tickR(name, desc, todoid, completed, button) {
     <strong>Todo Name: </strong>${name}<br>
     <strong>Todo Description: </strong>${desc}<br>
     <strong>Completed: </strong>${completed}<br>
-
-    <button onclick="tickW('${todoid}', this)">REMOVE</button>
+    <button onclick="tickW('${todoid}', this)">REMOVE</button><hr>
     `;
   btn.appendChild(completedTodo);
 
@@ -33,12 +31,11 @@ function tickR(name, desc, todoid, completed, button) {
   todoList.removeChild(button.parentElement);
 }
 
-
 //on remove click
 function tickW(todoId, button) {
   axios
     .delete(
-      `https://crudcrud.com/api/d02338605acd40bcbcd8b7ee1bcb021c/todoinfo/${todoId}`
+      `https://crudcrud.com/api/e2db125009e540458a9a4b5c948a0e0a/todoinfo/${todoId}`
     )
     .then((response) => {
       let removeDiv = button.parentElement;
@@ -52,7 +49,7 @@ function tickW(todoId, button) {
 function postTodo(name, desc, completed) {
   axios
     .post(
-      `https://crudcrud.com/api/d02338605acd40bcbcd8b7ee1bcb021c/todoinfo`,
+      `https://crudcrud.com/api/e2db125009e540458a9a4b5c948a0e0a/todoinfo`,
       { name, desc, completed }
     )
     .then((response) => addTodoOnScreen(response.data))
@@ -77,7 +74,7 @@ formDetails.addEventListener("submit", function (e) {
 //onload function
 window.onload = function () {
   axios
-    .get(`https://crudcrud.com/api/d02338605acd40bcbcd8b7ee1bcb021c/todoinfo`)
+    .get(`https://crudcrud.com/api/e2db125009e540458a9a4b5c948a0e0a/todoinfo`)
     .then((response) => {
       for (var i = 0; i < response.data.length; i++) {
         addTodoOnScreen(response.data[i]);
